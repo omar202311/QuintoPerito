@@ -1,1 +1,757 @@
-<h1>Pagina 1 </h1>
+<!DOCTYPE html>
+<html lang="es">
+<head>
+
+<style>
+
+/* Variables CSS para colores */
+:root {
+    --primary-color: #A0522D; /* Un tono cálido como el terracota o marrón rojizo */
+    --secondary-color: #E6B0AA; /* Un rosa pálido o durazno */
+    --text-color: #333;
+    --light-text-color: #f8f8f8;
+    --background-color: #fdfdfd;
+    --dark-background: #2c2c2c;
+    --accent-color: #588157; /* Un verde oscuro para acentos */
+}
+
+/* Reset Básico y Estilos Generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Georgia', serif; /* Una fuente clásica y elegante */
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+.section-padding {
+    padding: 80px 0;
+}
+
+h1, h2, h3 {
+    font-family: 'Playfair Display', serif; /* Una fuente elegante para títulos */
+    margin-bottom: 20px;
+    color: var(--primary-color);
+    text-align: center;
+}
+
+h2 {
+    font-size: 3em;
+}
+
+h3 {
+    font-size: 2.5em;
+    margin-bottom: 40px;
+    position: relative;
+}
+
+h3::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background-color: var(--accent-color);
+    margin: 10px auto 0;
+}
+
+p {
+    margin-bottom: 15px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+.btn {
+    display: inline-block;
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+    padding: 12px 25px;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+    font-weight: bold;
+    letter-spacing: 1px;
+}
+
+.btn:hover {
+    background-color: #8B4513; /* Un tono más oscuro de primary-color */
+}
+
+/* Header */
+.main-header {
+    background-color: var(--dark-background);
+    color: var(--light-text-color);
+    padding: 20px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+}
+
+.main-header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-header .logo a {
+    color: var(--light-text-color);
+    font-size: 2.2em;
+    font-weight: bold;
+    font-family: 'Playfair Display', serif;
+}
+
+.main-nav ul {
+    list-style: none;
+    display: flex;
+}
+
+.main-nav ul li {
+    margin-left: 30px;
+}
+
+.main-nav ul li a {
+    color: var(--light-text-color);
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+.main-nav ul li a:hover {
+    color: var(--secondary-color);
+}
+
+/* Hero Section */
+.hero-section {
+    background: url('images/hero-bg.jpg') no-repeat center center/cover;
+    color: var(--light-text-color);
+    text-align: center;
+    padding: 200px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    margin-top: 80px; /* Para que no se esconda bajo el header */
+}
+
+.hero-section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Overlay oscuro */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+    max-width: 800px;
+}
+
+.hero-content h2 {
+    font-size: 4.5em;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    color: var(--light-text-color);
+}
+
+.hero-content p {
+    font-size: 1.5em;
+    margin-bottom: 40px;
+    color: var(--secondary-color);
+}
+
+/* About Section */
+.about-section {
+    background-color: var(--background-color);
+}
+
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    flex-wrap: wrap; /* Permite que los elementos se envuelvan en pantallas pequeñas */
+}
+
+.about-text {
+    flex: 2;
+    min-width: 300px;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+}
+
+.about-image img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Menu Section */
+.menu-section {
+    background-color: #f7f3ed; /* Un color crema suave */
+}
+
+.menu-categories {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.menu-tab {
+    background-color: #eee;
+    border: none;
+    padding: 12px 25px;
+    margin: 0 10px;
+    font-size: 1.1em;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.menu-tab:hover, .menu-tab.active {
+    background-color: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+.menu-category-content {
+    display: none; /* Oculta todas las categorías por defecto */
+    animation: fadeIn 0.5s ease-in-out;
+}
+
+.menu-category-content.active {
+    display: grid; /* Muestra la categoría activa */
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.menu-item {
+    background-color: var(--light-text-color);
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.08);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+}
+
+.menu-item img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.item-details {
+    padding: 20px;
+}
+
+.item-details h4 {
+    font-size: 1.6em;
+    margin-bottom: 10px;
+    color: var(--accent-color);
+}
+
+.item-details p {
+    font-size: 1em;
+    color: var(--text-color);
+}
+
+/* Gallery Section */
+.gallery-section {
+    background-color: var(--background-color);
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+}
+
+.gallery-grid img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    transition: transform 0.3s ease;
+}
+
+.gallery-grid img:hover {
+    transform: scale(1.03);
+}
+
+/* Testimonials Section */
+.testimonials-section {
+    background-color: var(--dark-background);
+    color: var(--light-text-color);
+}
+
+.testimonials-section h3 {
+    color: var(--light-text-color);
+}
+
+.testimonial-slider {
+    position: relative;
+    overflow: hidden;
+    width: 80%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.testimonial-item {
+    display: none; /* Oculta los testimonios por defecto */
+    padding: 30px;
+    background-color: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    margin-bottom: 20px;
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+.testimonial-item.active {
+    display: block; /* Muestra el testimonio activo */
+}
+
+.testimonial-item p {
+    font-style: italic;
+    font-size: 1.3em;
+    margin-bottom: 15px;
+}
+
+.testimonial-item span {
+    font-weight: bold;
+    font-size: 1.1em;
+    color: var(--secondary-color);
+}
+
+.slider-nav {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.dot {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    background-color: rgba(255, 255, 255, 0.4);
+    border-radius: 50%;
+    margin: 0 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.dot.active {
+    background-color: var(--secondary-color);
+}
+
+/* Contact Section */
+.contact-section {
+    background-color: var(--background-color);
+}
+
+.contact-info {
+    text-align: center;
+    margin-bottom: 40px;
+    font-size: 1.1em;
+}
+
+.contact-info p {
+    margin-bottom: 10px;
+}
+
+.contact-info i {
+    color: var(--primary-color);
+    margin-right: 10px;
+    font-size: 1.3em;
+}
+
+.map-container {
+    text-align: center;
+    margin-top: 30px;
+}
+
+.map-container iframe {
+    width: 100%;
+    max-width: 800px;
+    height: 450px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+/* Footer */
+.main-footer {
+    background-color: var(--dark-background);
+    color: var(--light-text-color);
+    text-align: center;
+    padding: 30px 0;
+    font-size: 0.9em;
+}
+
+.main-footer .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.social-links a {
+    color: var(--light-text-color);
+    margin: 0 10px;
+    font-size: 1.5em;
+    transition: color 0.3s ease;
+}
+
+.social-links a:hover {
+    color: var(--secondary-color);
+}
+
+/* Animaciones */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .main-header .container {
+        flex-direction: column;
+    }
+
+    .main-nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .main-nav ul li {
+        margin: 5px 15px;
+    }
+
+    .hero-content h2 {
+        font-size: 3em;
+    }
+
+    .hero-content p {
+        font-size: 1.2em;
+    }
+
+    .about-content {
+        flex-direction: column;
+    }
+
+    .menu-tab {
+        margin-bottom: 10px;
+    }
+
+    .main-footer .container {
+        flex-direction: column;
+        gap: 15px;
+    }
+}
+
+@media (max-width: 480px) {
+    h2 {
+        font-size: 2.5em;
+    }
+
+    h3 {
+        font-size: 2em;
+    }
+
+    .hero-content p {
+        font-size: 1em;
+    }
+
+    .btn {
+        padding: 10px 20px;
+        font-size: 0.9em;
+    }
+}
+</style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sabor Ancestral - Cocina de Autor</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+
+    // Menu Tab Functionality
+    const menuTabs = document.querySelectorAll('.menu-tab');
+    const menuContents = document.querySelectorAll('.menu-category-content');
+
+    menuTabs.forEach(tab => {
+        tab.addEventListener('click', () => {
+            const category = tab.dataset.category;
+
+            // Remove active class from all tabs and contents
+            menuTabs.forEach(t => t.classList.remove('active'));
+            menuContents.forEach(content => content.classList.remove('active'));
+
+            // Add active class to clicked tab and corresponding content
+            tab.classList.add('active');
+            document.getElementById(category).classList.add('active');
+        });
+    });
+
+    // Set the first menu tab as active by default
+    if (menuTabs.length > 0) {
+        menuTabs[0].click(); // Simulate a click on the first tab
+    }
+
+    // Testimonial Slider Functionality
+    const testimonialItems = document.querySelectorAll('.testimonial-item');
+    const dots = document.querySelectorAll('.slider-nav .dot');
+    let currentSlide = 0;
+
+    function showSlide(index) {
+        testimonialItems.forEach((item, i) => {
+            item.classList.remove('active');
+            dots[i].classList.remove('active');
+            if (i === index) {
+                item.classList.add('active');
+                dots[i].classList.add('active');
+            }
+        });
+    }
+
+    function nextSlide() {
+        currentSlide = (currentSlide + 1) % testimonialItems.length;
+        showSlide(currentSlide);
+    }
+
+    // Initial display
+    if (testimonialItems.length > 0) {
+        showSlide(currentSlide);
+        // Auto-advance testimonials every 5 seconds
+        setInterval(nextSlide, 5000);
+    }
+
+    // Dot navigation for testimonials
+    dots.forEach(dot => {
+        dot.addEventListener('click', (e) => {
+            const slideIndex = parseInt(e.target.dataset.slide);
+            currentSlide = slideIndex;
+            showSlide(currentSlide);
+        });
+    });
+});
+
+</script>
+    <header class="main-header">
+        <div class="container">
+            <h1 class="logo"><a href="#">Sabor Ancestral</a></h1>
+            <nav class="main-nav">
+                <ul>
+                    <li><a href="#hero">Inicio</a></li>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#menu">Menú</a></li>
+                    <li><a href="#gallery">Galería</a></li>
+                    <li><a href="#testimonials">Opiniones</a></li>
+                    <li><a href="#contact">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section id="hero" class="hero-section">
+        <div class="hero-content">
+            <h2>Descubre el Auténtico Sabor de Nuestra Tierra</h2>
+            <p>Donde la tradición se fusiona con la innovación culinaria.</p>
+            <a href="#menu" class="btn">Ver Nuestro Menú</a>
+        </div>
+    </section>
+
+    <section id="about" class="about-section section-padding">
+        <div class="container">
+            <h3>Nuestra Historia</h3>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>En "Sabor Ancestral", creemos que la comida es un viaje a nuestras raíces. Fundado en 2020 por el Chef Ricardo Morales, nuestro restaurante se dedica a rescatar y elevar los sabores autóctonos de Guatemala, utilizando ingredientes frescos y de temporada directamente de productores locales. Cada plato es una obra de arte, una historia contada a través de aromas y texturas que evocan recuerdos y crean nuevas experiencias.</p>
+                    <p>Nuestro compromiso es ofrecer una experiencia culinaria única, donde cada visita se convierta en una celebración de la gastronomía guatemalteca con un toque contemporáneo.</p>
+                </div>
+                <div class="about-image">
+                    <img src="images/chef.jpg" alt="Chef Ricardo Morales en la cocina">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="menu" class="menu-section section-padding">
+        <div class="container">
+            <h3>Nuestro Menú</h3>
+            <div class="menu-categories">
+                <button class="menu-tab active" data-category="entradas">Entradas</button>
+                <button class="menu-tab" data-category="platos-fuertes">Platos Fuertes</button>
+                <button class="menu-tab" data-category="postres">Postres</button>
+                <button class="menu-tab" data-category="bebidas">Bebidas</button>
+            </div>
+            <div class="menu-items">
+                <div class="menu-category-content active" id="entradas">
+                    <div class="menu-item">
+                        <img src="images/tamalito.jpg" alt="Tamalito de Chunto">
+                        <div class="item-details">
+                            <h4>Tamalito de Chunto</h4>
+                            <p>Delicioso tamalito de masa de maíz relleno de carne de chunto (pavo) y especias. (Q 45)</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="images/chuchito.jpg" alt="Chuchitos con Recado">
+                        <div class="item-details">
+                            <h4>Chuchitos con Recado</h4>
+                            <p>Pequeños tamales de maíz con carne de cerdo y bañados en recado rojo. (Q 35)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-category-content" id="platos-fuertes">
+                    <div class="menu-item">
+                        <img src="images/pepian.jpg" alt="Pepián de Pollo">
+                        <div class="item-details">
+                            <h4>Pepián de Pollo</h4>
+                            <p>Estofado tradicional de pollo con especias y vegetales, servido con arroz. (Q 95)</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="images/kakik.jpg" alt="Kak'ik">
+                        <div class="item-details">
+                            <h4>Kak'ik</h4>
+                            <p>Sopa de pavo típica de Alta Verapaz, con chile cobán y hierbas aromáticas. (Q 110)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-category-content" id="postres">
+                    <div class="menu-item">
+                        <img src="images/revolcado.jpg" alt="Revolcado de Plátano">
+                        <div class="item-details">
+                            <h4>Revolcado de Plátano</h4>
+                            <p>Plátano maduro en dulce, acompañado de crema y canela. (Q 40)</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="images/mole.jpg" alt="Mole de Plátano">
+                        <div class="item-details">
+                            <h4>Mole de Plátano</h4>
+                            <p>Rodajas de plátano frito bañadas en mole de chocolate y especias. (Q 45)</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="menu-category-content" id="bebidas">
+                    <div class="menu-item">
+                        <img src="images/fresco.jpg" alt="Fresco de Rosas">
+                        <div class="item-details">
+                            <h4>Fresco de Rosas</h4>
+                            <p>Bebida refrescante a base de rosas naturales. (Q 25)</p>
+                        </div>
+                    </div>
+                    <div class="menu-item">
+                        <img src="images/cafe.jpg" alt="Café de Altura">
+                        <div class="item-details">
+                            <h4>Café de Altura</h4>
+                            <p>Selección de café guatemalteco de grano entero. (Q 30)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="gallery" class="gallery-section section-padding">
+        <div class="container">
+            <h3>Nuestra Galería</h3>
+            <div class="gallery-grid">
+                <img src="images/interior1.jpg" alt="Interior del Restaurante 1">
+                <img src="images/dish1.jpg" alt="Plato Principal 1">
+                <img src="images/ambiente.jpg" alt="Ambiente acogedor">
+                <img src="images/dish2.jpg" alt="Plato Principal 2">
+                <img src="images/chef-plating.jpg" alt="Chef emplatando">
+                <img src="images/mesa.jpg" alt="Mesa servida">
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials" class="testimonials-section section-padding">
+        <div class="container">
+            <h3>Lo que Dicen Nuestros Clientes</h3>
+            <div class="testimonial-slider">
+                <div class="testimonial-item">
+                    <p>"Una experiencia culinaria inolvidable. Los sabores son auténticos y el servicio impecable."</p>
+                    <span>- Ana López</span>
+                </div>
+                <div class="testimonial-item">
+                    <p>"El mejor pepián que he probado en mi vida. ¡Definitivamente volveré!"</p>
+                    <span>- Carlos Gómez</span>
+                </div>
+                <div class="testimonial-item">
+                    <p>"El ambiente es perfecto para una cena especial. Cada detalle está cuidado."</p>
+                    <span>- Sofía Pérez</span>
+                </div>
+            </div>
+            <div class="slider-nav">
+                <span class="dot active" data-slide="0"></span>
+                <span class="dot" data-slide="1"></span>
+                <span class="dot" data-slide="2"></span>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="contact-section section-padding">
+        <div class="container">
+            <h3>Contáctanos</h3>
+            <div class="contact-info">
+                <p><i class="fas fa-map-marker-alt"></i> 12 Calle 3-45 Zona 1, Ciudad de Guatemala</p>
+                <p><i class="fas fa-phone"></i> +502 2345-6789</p>
+                <p><i class="fas fa-envelope"></i> info@saborancestral.com</p>
+                <p><i class="fas fa-clock"></i> Martes a Domingo: 12:00 PM - 10:00 PM</p>
+            </div>
+            <div class="map-container">
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3862.658632646271!2d-90.51862598516016!3d14.629330989781615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8589a1b6d1b2f7d9%3A0xc3f8e6c7d1e7c8e!2sPlaza%20Espa%C3%B1a%2C%20Zona%209%2C%20Ciudad%20de%20Guatemala!5e0!3m2!1ses!2sgt!4v1700000000000!5m2!1ses!2sgt" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+            </div>
+        </div>
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <p>&copy; 2025 Sabor Ancestral. Todos los derechos reservados.</p>
+            <div class="social-links">
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
